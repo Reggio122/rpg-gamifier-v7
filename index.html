@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>RPG Gamifier v14 — AI Mentor, Analytics & Gold</title>
+<link rel="stylesheet" href="style.css?v=14">
+</head>
+<body>
+<div class="app">
+  <div class="toasts" id="toasts"></div>
+  <header class="topbar">
+    <div class="avatar-box">
+      <img id="avatarMini" class="avatar-mini" src="assets/hero1.png" alt="mini">
+      <div class="avatar-ctrl">
+        <select id="avatarSelect">
+          <option value="hero1.png">🛡️ Воин</option>
+          <option value="hero2.png">🪄 Маг</option>
+          <option value="hero3.png">🗡️ Вор</option>
+        </select>
+      </div>
+    </div>
+    <div class="hud">
+      <h1>RPG Gamifier v14</h1>
+      <div class="stats">
+        <div class="stat">STR <span id="statSTR">0</span></div>
+        <div class="stat">INT <span id="statINT">0</span></div>
+        <div class="stat">CHA <span id="statCHA">0</span></div>
+      </div>
+      <div class="xpbar"><div class="xpfill" id="xpFill"></div></div>
+      <div class="meta">
+        Уровень: <b id="levelNum">1</b> • XP: <b id="currentXP">0</b> •
+        <span class="gold">⭑ Золото: <b id="goldBalance">0</b></span> •
+        API: <span id="apiStatus">offline</span>
+      </div>
+    </div>
+  </header>
+
+  <nav class="tabs">
+    <button class="tab active" data-tab="board">Доска</button>
+    <button class="tab" data-tab="assistant">ИИ‑ассистент</button>
+    <button class="tab" data-tab="analytics">Аналитика</button>
+  </nav>
+
+  <main>
+    <section id="tab-board" class="tabpane active">
+      <p>Тут твоя доска задач и квестов.</p>
+    </section>
+    <section id="tab-assistant" class="tabpane">
+      <p>ИИ‑ассистент.</p>
+    </section>
+    <section id="tab-analytics" class="tabpane">
+      <p>Аналитика.</p>
+    </section>
+  </main>
+  <footer class="foot">RPG Gamifier v14 • AI Mentor + Analytics + Gold • © You</footer>
+</div>
+
+<script>
+const BOT_API_BASE = "https://rpg-gamifier-v7-1.onrender.com";
+</script>
+<script src="app.js?v=14"></script>
+</body>
+</html>
