@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>RPG Gamifier v8 — D&D 16‑bit Edition</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+
+  <header class="topbar">
+    <div class="avatar-box">
+      <img id="avatarImg" class="avatar" src="assets/hero1.png" alt="avatar">
+      <div class="avatar-ctrl">
+        <select id="avatarSelect">
+          <option value="hero1.png">🛡️ Воин</option>
+          <option value="hero2.png">🪄 Маг</option>
+          <option value="hero3.png">🗡️ Вор</option>
+        </select>
+        <button id="saveAvatar" class="btn primary">Сменить</button>
+      </div>
+    </div>
+    <div class="hud">
+      <h1>RPG Gamifier</h1>
+      <div class="stats">
+        <div class="stat">STR <span id="statSTR">0</span></div>
+        <div class="stat">INT <span id="statINT">0</span></div>
+        <div class="stat">CHA <span id="statCHA">0</span></div>
+      </div>
+      <div class="xpbar"><div class="xpfill" id="xpFill"></div></div>
+      <div class="meta">Уровень: <b id="levelNum">1</b> • Баланс: <b id="currentXP">0</b> XP • <span id="apiStatus">API: offline</span></div>
+    </div>
+  </header>
+
+  <main class="grid">
+    <section class="panel">
+      <h2>📜 Inbox — входящие квесты</h2>
+      <div class="add-row">
+        <input id="inboxText" placeholder="Новый квест..." />
+        <input id="inboxXP" type="number" placeholder="XP" value="10" />
+        <select id="inboxStat">
+          <option value="STR">STR</option>
+          <option value="INT">INT</option>
+          <option value="CHA">CHA</option>
+        </select>
+        <input id="inboxDate" type="datetime-local" />
+        <button id="inboxAdd" class="btn primary">Добавить</button>
+      </div>
+      <div id="inboxList" class="list"></div>
+    </section>
+
+    <section class="panel board">
+      <h2>🏰 Гильдия приключений</h2>
+      <div class="cols">
+        <div class="col" data-bucket="short"><h3>⚔️ Мобы</h3><div id="shortList" class="list"></div></div>
+        <div class="col" data-bucket="mid"><h3>📜 Квесты</h3><div id="midList" class="list"></div></div>
+        <div class="col" data-bucket="long"><h3>🗺️ Кампания</h3><div id="longList" class="list"></div></div>
+        <div class="col" data-bucket="boss"><h3>🐉 Драконы</h3><div id="bossList" class="list"></div></div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>🧰 Лавка алхимика</h2>
+      <div id="shopList" class="list"></div>
+      <div class="add-row">
+        <input id="addRewardText" placeholder="Награда" />
+        <input id="addRewardCost" type="number" placeholder="XP" value="50" />
+        <button id="addReward" class="btn primary">Добавить</button>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>🏅 Трофеи из подземелий</h2>
+      <div id="achList" class="badge-grid"></div>
+      <div class="add-row">
+        <input id="addAchText" placeholder="Своя ачивка..." />
+        <button id="addAch" class="btn">Добавить</button>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>🧙 Совет мудреца</h2>
+      <button id="askCoach" class="btn primary">Получить совет</button>
+      <div id="coachIdeas" class="coach-ideas"></div>
+    </section>
+  </main>
+
+  <footer class="foot">RPG Gamifier v8 • D&D • © You</footer>
+</div>
+
+<script>
+const BOT_API_BASE = "https://rpg-gamifier-v7.onrender.com";
+</script>
+<script src="app.js"></script>
+</body>
+</html>
