@@ -1,5 +1,5 @@
-# v16 — backend на Webhook
-import json, time, threading
+# v16.1 — backend на Webhook (Render PORT fix)
+import os, json, time, threading
 from datetime import datetime, timedelta, timezone
 from flask import Flask, request, jsonify
 from flask_cors import CORS
@@ -119,7 +119,6 @@ def loop():
         time.sleep(30)
 
 from telegram.ext import Application
-
 application = Application.builder().token(TOKEN).build()
 application.add_handler(CommandHandler("start", start))
 
@@ -131,9 +130,15 @@ def webhook():
 
 def main():
     url = f"{BACKEND_URL}/webhook"
-    bot.set_webhook(url)
+    try:
+        bot.delete_webhook()
+        bot.set_webhook(url)
+        print("Webhook set to", url)
+    except Exception as e:
+        print("Webhook error:", e)
     threading.Thread(target=loop, daemon=True).start()
-    app.run(host="0.0.0.0", port=5000)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
 
 if __name__ == "__main__":
     main()
