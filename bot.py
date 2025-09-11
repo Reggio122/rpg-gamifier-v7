@@ -124,9 +124,13 @@ application.add_handler(CommandHandler("start", start))
 
 @app.post("/webhook")
 def webhook():
-    update = Update.de_json(request.get_json(force=True), bot)
-    application.update_queue.put(update)
+    try:
+        update = Update.de_json(request.get_json(force=True), bot)
+        application.process_update(update)
+    except Exception as e:
+        print("Webhook error:", e)
     return "ok"
+
 
 def main():
     url = f"{BACKEND_URL}/webhook"
